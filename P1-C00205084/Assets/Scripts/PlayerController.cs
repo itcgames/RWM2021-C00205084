@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerPos = new Vector3(0.0f, -3.85f, 0.0f);
         Vector3 velocity = new Vector3(0.0f, 0.0f, 0.0f);
         
     }
@@ -104,5 +105,15 @@ public class PlayerController : MonoBehaviour
     {
         velocity.x = 0.0f;
         velocity.y = 0.0f;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Stop moving if tile encountered
+        if(collision.gameObject.tag == "Tile")
+        {
+            velocity = new Vector2(0.0f, 0.0f);
+        }
+
     }
 }
