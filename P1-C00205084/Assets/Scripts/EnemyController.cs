@@ -26,25 +26,30 @@ public class EnemyController : MonoBehaviour
         transform.position = enemyPos;
         getDirection();
 
-        if(enemyDirection == 1)
+        EnemyMovement();
+    }
+
+    void EnemyMovement()
+    {
+        if (enemyDirection == 1)
         {
             velocity.y = 0.0f;
             velocity.x = 0.001f;
         }
 
-        else if(enemyDirection == 2)
+        else if (enemyDirection == 2)
         {
             velocity.y = 0.0f;
             velocity.x = -0.001f;
         }
 
-       else if(enemyDirection == 3)
+        else if (enemyDirection == 3)
         {
             velocity.x = 0.0f;
             velocity.y = 0.001f;
         }
 
-       else if(enemyDirection == 4)
+        else if (enemyDirection == 4)
         {
             velocity.x = 0.0f;
             velocity.y = -0.001f;
