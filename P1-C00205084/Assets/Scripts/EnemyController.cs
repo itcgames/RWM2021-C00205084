@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     Vector3 velocity;
-    int enemyDirection;
+    public int enemyDirection;
     Vector3 enemyPos;
 
 
@@ -72,7 +72,7 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    int getDirection()
+    public int getDirection()
     {
         return enemyDirection;
     }

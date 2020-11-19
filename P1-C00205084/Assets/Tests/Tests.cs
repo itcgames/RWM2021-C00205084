@@ -24,5 +24,29 @@ namespace Tests
 
 
         }
+
+        [UnityTest]
+        public IEnumerator EnemyCollision()
+        {
+            GameObject enemy = new GameObject();
+            enemy.AddComponent<Rigidbody2D>();
+            enemy.AddComponent<EnemyController>();
+
+            GameObject tile = new GameObject();
+            tile.AddComponent<Rigidbody2D>();
+            tile.AddComponent<PlayerController>();
+            tile.tag = "Tile";
+
+            int initialDirection = enemy.GetComponent<EnemyController>().getDirection();
+
+            enemy.transform.position = tile.transform.position;
+            yield return new WaitForSeconds(0.1f);
+
+            Assert.AreNotEqual(enemy.GetComponent<EnemyController>().getDirection(), initialDirection);
+
+
+        }
+
+
     }
 }
