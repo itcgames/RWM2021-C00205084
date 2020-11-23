@@ -178,9 +178,14 @@ public class PlayerController : MonoBehaviour
     IEnumerator Dead()
     {
         CURRENT_STATE = "dead";
-        
+
         yield return new WaitForSeconds(2);
 
         Application.Quit();
+    }
+
+    public int GetLives()
+    {
+        return playerLives;
     }
 }
