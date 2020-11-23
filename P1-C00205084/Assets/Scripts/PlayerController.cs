@@ -10,18 +10,25 @@ public class PlayerController : MonoBehaviour
     Vector3 velocity; 
     float friction = 0.99f;
 
+    int playerLives;
+
 
     string CURRENT_STATE;
     public Animator animator;
 
+    // This is a temp variable to stop errors while waiting for sprite sheet for animator
+    bool animatorActive = false;
 
     // Start is called before the first frame update
     void Start()
     {
         playerPos = new Vector3(0.0f, -3.85f, 0.0f);
         Vector3 velocity = new Vector3(0.0f, 0.0f, 0.0f);
-        transform.localRotation = Quaternion.Euler(0, 0, 0);
         CURRENT_STATE = "idle";
+        playerLives = 3;
+
+        StartCoroutine(Dead());
+
     }
 
     // Update is called once per frame
@@ -32,26 +39,35 @@ public class PlayerController : MonoBehaviour
         playerPos.y += velocity.y * friction;
         playerPos.x += velocity.x * friction;
 
-        switch (CURRENT_STATE)
+        if(playerLives == 0)
         {
-            case "idle":
-                animator.Play("idle");
-                break;
-            case "walkLeft":
-                animator.Play("walkLeft");
-                break;
-            case "walkRight":
-                animator.Play("walkRight");
-                break;
-            case "walkUp":
-                animator.Play("walkUp");
-                break;
-            case "walkDown":
-                animator.Play("walkDown");
-                break;
-            case "dead":
-                animator.Play("dead");
-                break;
+            Dead();
+            
+        }
+
+        if (animatorActive == true)
+        {
+            switch (CURRENT_STATE)
+            {
+                case "idle":
+                    animator.Play("idle");
+                    break;
+                case "walkLeft":
+                    animator.Play("walkLeft");
+                    break;
+                case "walkRight":
+                    animator.Play("walkRight");
+                    break;
+                case "walkUp":
+                    animator.Play("walkUp");
+                    break;
+                case "walkDown":
+                    animator.Play("walkDown");
+                    break;
+                case "dead":
+                    animator.Play("dead");
+                    break;
+            }
         }
 
     }
@@ -145,5 +161,26 @@ public class PlayerController : MonoBehaviour
             velocity = new Vector2(0.0f, 0.0f);
         }
 
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Stop moving if tile encountered
+        if (collision.gameObject.tag == "Enemy")
+        {
+            velocity = new Vector2(0.0f, 0.0f);
+            playerLives = playerLives - 1;
+            Debug.Log("Collision");
+        }
+
+    }
+
+    IEnumerator Dead()
+    {
+        CURRENT_STATE = "dead";
+        
+        yield return new WaitForSeconds(2);
+
+        Application.Quit();
     }
 }
