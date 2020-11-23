@@ -7,8 +7,6 @@ public class EnemyController : MonoBehaviour
     Vector3 velocity;
     public int enemyDirection;
     Vector3 enemyPos;
-    Transform target;
-
 
     float speed = 0.01f;
   
@@ -19,7 +17,6 @@ public class EnemyController : MonoBehaviour
         enemyDirection = Random.Range(1, 4);
         velocity = new Vector2(0.0f, 0.0f);
         enemyPos = transform.position;
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -59,10 +56,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    void EnemyTypeTwoMovement()
-    {
-        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-    }
 
     void changeDirection()
     {
