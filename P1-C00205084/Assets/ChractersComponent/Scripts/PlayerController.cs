@@ -5,83 +5,86 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-
     Vector3 playerPos;
-    Vector3 velocity; 
+    Vector3 velocity;
     float friction = 0.99f;
 
-    int playerLives;
+    // number of lives the player has 
+    public int playerLives;
 
 
     string CURRENT_STATE;
     public Animator animator;
 
-    // This is a temp variable to stop errors while waiting for sprite sheet for animator
-    bool animatorActive = false;
+
+
+    Vector3 previousPosition;
+
+    GameObject gameController;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        playerPos = new Vector3(0.0f, -3.85f, 0.0f);
+        // set player velocity to 0 when game starts
+        playerPos = transform.position;
+        previousPosition = playerPos;
         Vector3 velocity = new Vector3(0.0f, 0.0f, 0.0f);
+        gameController = GameObject.FindGameObjectWithTag("GameController");
+        // Player is idle before movement 
         CURRENT_STATE = "idle";
-        playerLives = 3;
 
-        StartCoroutine(Dead());
 
+        animator = GetComponent<Animator>();
+        CURRENT_STATE = "idle";
+
+    }
+
+    void FixedUpdate()
+    {
+        previousPosition = playerPos;
+        playerPos += velocity * friction;
+        transform.position = playerPos;
     }
 
     // Update is called once per frame
     void Update()
     {
         InputController();
-        transform.position = playerPos;
-        playerPos.y += velocity.y * friction;
-        playerPos.x += velocity.x * friction;
 
-        if(playerLives == 0)
-        {
-            Dead();
-            
-        }
 
-        if (animatorActive == true)
+        switch (CURRENT_STATE)
         {
-            switch (CURRENT_STATE)
-            {
-                case "idle":
-                    animator.Play("idle");
-                    break;
-                case "walkLeft":
-                    animator.Play("walkLeft");
-                    break;
-                case "walkRight":
-                    animator.Play("walkRight");
-                    break;
-                case "walkUp":
-                    animator.Play("walkUp");
-                    break;
-                case "walkDown":
-                    animator.Play("walkDown");
-                    break;
-                case "dead":
-                    animator.Play("dead");
-                    break;
-            }
+            case "idle":
+                animator.Play("idle");
+                break;
+            case "walkLeft":
+                animator.Play("walkLeft");
+                break;
+            case "walkRight":
+                animator.Play("walkRight");
+                break;
+            case "walkUp":
+                animator.Play("walkUp");
+                break;
+            case "walkDown":
+                animator.Play("walkDown");
+                break;
         }
 
     }
 
     void InputController()
     {
-        if(Input.GetKey("w"))
+        if (Input.GetKey("w"))
         {
             MoveUp();
         }
 
-        if(Input.GetKeyUp("w"))
+        if (Input.GetKeyUp("w"))
         {
-            StopMovement();
+            Stop();
         }
 
         if (Input.GetKey("a"))
@@ -91,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyUp("a"))
         {
-            StopMovement();
+            Stop();
         }
 
         if (Input.GetKey("s"))
@@ -101,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyUp("s"))
         {
-            StopMovement();
+            Stop();
         }
 
 
@@ -112,7 +115,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyUp("d"))
         {
-            StopMovement();
+            Stop();
         }
 
     }
@@ -145,44 +148,38 @@ public class PlayerController : MonoBehaviour
         CURRENT_STATE = "walkRight";
     }
 
+    // public to allow map access
+    public void StopMovement()
+    {
+        Debug.Log("Stop Called");
+        velocity.x = 0.0f;
+        velocity.y = 0.0f;
+        playerPos = previousPosition;
+        transform.position = playerPos;
+        CURRENT_STATE = "idle";
+    }
 
-    void StopMovement()
+    public void Stop()
     {
         velocity.x = 0.0f;
         velocity.y = 0.0f;
         CURRENT_STATE = "idle";
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        // Stop moving if tile encountered
-        if(collision.gameObject.tag == "Tile")
+        if (other.gameObject.tag == "Character")
         {
+            Debug.Log("CollisionEnemy");
             velocity = new Vector2(0.0f, 0.0f);
+       // Following dependant on component made in group project
+       //     GameController gameControllerScript = FindObjectOfType<GameController>();
+       //    gameControllerScript.DeductLife();
         }
-
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        // Stop moving if tile encountered
-        if (collision.gameObject.tag == "Enemy")
-        {
-            velocity = new Vector2(0.0f, 0.0f);
-            playerLives = playerLives - 1;
-            Debug.Log("Collision");
-        }
 
-    }
-
-    IEnumerator Dead()
-    {
-        CURRENT_STATE = "dead";
-
-        yield return new WaitForSeconds(2);
-
-        Application.Quit();
-    }
 
     public int GetLives()
     {
