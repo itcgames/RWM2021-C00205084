@@ -9,7 +9,10 @@ public class EnemyController : MonoBehaviour
     Vector3 enemyPos;
 
     float speed = 0.01f;
-  
+
+
+    public Animator animator;
+    string CURRENT_STATE;
 
     // Start is called before the first frame update
     void Start()
@@ -25,8 +28,23 @@ public class EnemyController : MonoBehaviour
         enemyPos += velocity;
         transform.position = enemyPos;
         getDirection();
-
         EnemyMovement();
+
+        switch (CURRENT_STATE)
+        {
+            case "walkLeft":
+                animator.Play("enemyLeft");
+                break;
+            case "walkRight":
+                animator.Play("enemyRight");
+                break;
+            case "walkUp":
+                animator.Play("enemyUp");
+                break;
+            case "walkDown":
+                animator.Play("enemyDown");
+                break;
+        }
     }
 
     void EnemyMovement()
@@ -34,25 +52,29 @@ public class EnemyController : MonoBehaviour
         if (enemyDirection == 1)
         {
             velocity.y = 0.0f;
-            velocity.x = 0.001f;
+            velocity.x = speed;
+            CURRENT_STATE = "walkRight";
         }
 
         else if (enemyDirection == 2)
         {
             velocity.y = 0.0f;
-            velocity.x = -0.001f;
+            velocity.x = -speed;
+            CURRENT_STATE = "walkLeft";
         }
 
         else if (enemyDirection == 3)
         {
             velocity.x = 0.0f;
-            velocity.y = 0.001f;
+            velocity.y = speed;
+            CURRENT_STATE = "walkUp";
         }
 
         else if (enemyDirection == 4)
         {
             velocity.x = 0.0f;
-            velocity.y = -0.001f;
+            velocity.y = -speed;
+            CURRENT_STATE = "walkDown";
         }
     }
 
