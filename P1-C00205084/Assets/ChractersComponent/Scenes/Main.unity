@@ -229,19 +229,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1576452611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1576452609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SpriteLibraryAsset: {fileID: 0}
 --- !u!1001 &5139532732339837123
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -318,6 +305,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6247848887658656585, guid: b9c0ee3437015524092e22dce2c56749,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6247848887658656587, guid: b9c0ee3437015524092e22dce2c56749,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -371,6 +363,21 @@ PrefabInstance:
     - target: {fileID: 6247848887658656587, guid: b9c0ee3437015524092e22dce2c56749,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247848887658656588, guid: b9c0ee3437015524092e22dce2c56749,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247848887658656588, guid: b9c0ee3437015524092e22dce2c56749,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247848887658656588, guid: b9c0ee3437015524092e22dce2c56749,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6247848887658656590, guid: b9c0ee3437015524092e22dce2c56749,
