@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour
 
     public Animator animator;
     string CURRENT_STATE;
+    int lives;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,7 @@ public class EnemyController : MonoBehaviour
         enemyDirection = Random.Range(1, 4);
         velocity = new Vector2(0.0f, 0.0f);
         enemyPos = transform.position;
+        lives = 3;
     }
 
     // Update is called once per frame
@@ -93,6 +95,12 @@ public class EnemyController : MonoBehaviour
             Debug.Log("Collision");
         }
 
+        // 
+        if (collision.gameObject.tag == "Life")
+        {
+            lives = lives + 1;
+            Debug.Log("Collision");
+        }
     }
 
     public int getDirection()
