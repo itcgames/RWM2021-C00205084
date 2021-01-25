@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
     public int enemyDirection;
     Vector3 enemyPos;
 
-    float speed = 0.01f;
+
   
 
     // Start is called before the first frame update
@@ -55,7 +55,6 @@ public class EnemyController : MonoBehaviour
             velocity.y = -0.001f;
         }
     }
-
 
     void changeDirection()
     {

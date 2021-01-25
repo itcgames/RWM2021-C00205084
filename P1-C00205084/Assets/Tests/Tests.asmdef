@@ -1,5 +1,5 @@
 {
-    "name": "CharacterTests",
+    "name": "Tests",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
