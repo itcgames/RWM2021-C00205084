@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class EnemyTwoController : MonoBehaviour
 {
-    // Target tile - this is where the player is - the enemy will move towards this location
-    Transform target;
+  
 
     // Enemy has two movement states: follow and wander 
     string CURRENT_STATE;
@@ -23,13 +22,16 @@ public class EnemyTwoController : MonoBehaviour
 
     Vector3 enemyPos;
 
- 
+
+    GameObject target;
 
     // Start is called before the first frame update
     void Start()
     {
         enemyDirection = Random.Range(1, 4);
-        CURRENT_STATE = "wander";
+       // CURRENT_STATE = "wander";
+        target = GameObject.FindGameObjectWithTag("Player");
+        velocity = new Vector2(0.0f, 0.0f);
     }
 
     // Just showing how movement was integrated
@@ -105,27 +107,14 @@ public class EnemyTwoController : MonoBehaviour
 
     void Update()
     {
-       // SearchTiles();
-
-        enemyPos += velocity;
-        transform.position = enemyPos;
-
-        if(CURRENT_STATE == "wander")
-        {
-            EnemyMovement();
-        }
-
-        if(CURRENT_STATE == "follow")
-        {
-            MoveTowards();
-        }
-
+       // SearchTiles();     
+         MoveTowards();
     }
 
     void MoveTowards()
     {
         step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -172,32 +161,7 @@ public class EnemyTwoController : MonoBehaviour
 
     }
 
-    void SetDirection(int dir)
-    {
-        if (enemyDirection == 1)
-        {
-            velocity.y = 0.0f;
-            velocity.x = speed;
-        }
-
-        else if (enemyDirection == 2)
-        {
-            velocity.y = 0.0f;
-            velocity.x = -speed;
-        }
-
-        else if (enemyDirection == 3)
-        {
-            velocity.x = 0.0f;
-            velocity.y = speed;
-        }
-
-        else if (enemyDirection == 4)
-        {
-            velocity.x = 0.0f;
-            velocity.y = -speed;
-        }
-    }
+   
     void EnemyMovement()
     {
         if (enemyDirection == 1)
@@ -229,7 +193,7 @@ public class EnemyTwoController : MonoBehaviour
         }
     }
 
-    void setState(string state)
+     public void setState(string state)
     {
         CURRENT_STATE = state;
     }

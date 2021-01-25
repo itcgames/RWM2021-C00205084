@@ -52,22 +52,40 @@ namespace Tests
         public IEnumerator PlayerLives()
         {
             GameObject enemy = new GameObject();
+            enemy.tag = "Enemy";
             enemy.AddComponent<Rigidbody2D>();
-            enemy.AddComponent<EnemyController2>();
 
             GameObject player = new GameObject();
             player.AddComponent<Rigidbody2D>();
             player.AddComponent<PlayerController2>();
-            player.tag = "Player";
 
-            int initialLives = player.GetComponent<PlayerController2>().GetLives();
-
-            enemy.transform.position = player.transform.position;
+            player.transform.position = enemy.transform.position;
             yield return new WaitForSeconds(0.1f);
-
-            Assert.AreNotEqual(player.GetComponent<PlayerController2>().GetLives(), initialLives);
+            Assert.AreEqual(player.GetComponent<PlayerController2>().GetLives(), 3);
         }
 
 
+
+      //  [UnityTest]
+       // public IEnumerator EnemyTwoMovement()
+        //{
+          //  GameObject enemyTwo = new GameObject();
+            //enemyTwo.AddComponent<Rigidbody2D>();
+            //enemyTwo.AddComponent<EnemyTwoController>();
+            //EnemyTwoController script =  enemyTwo.GetComponent<EnemyTwoController>();
+
+            //GameObject player = new GameObject();
+            //player.AddComponent<Rigidbody2D>();
+            //player.AddComponent<PlayerController2>();
+            //player.tag = "Player";
+
+          
+        
+        //    script.setState("follow");
+
+          //  yield return new WaitForSeconds(5.0f);
+            //Assert.AreEqual(player.transform.position, enemyTwo.transform.position);
+        //}
+        
     }
 }
