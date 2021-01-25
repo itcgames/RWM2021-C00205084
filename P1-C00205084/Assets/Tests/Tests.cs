@@ -8,33 +8,14 @@ namespace Tests
 {
     public class TestScript
     {
-
-       GameObject playerObject;
-       GameObject enemyObject;
-
-        string player = "Prefabs/Player";
-        string enemy = "Prefabs/Enemy1";
-
-
-    [SetUp]
-    public void Setup()
-    {
-        GameObject controllerPrefab = Resources.Load<GameObject>(player);
-
-        playerObject = GameObject.Instantiate(controllerPrefab, new Vector2(50.0f, 50.0f), Quaternion.identity);
-
-        GameObject controllerEnemyPrefab = Resources.Load<GameObject>(enemy);
-
-        enemyObject = GameObject.Instantiate(controllerEnemyPrefab, new Vector2(0.0f, 0.0f), Quaternion.identity);
-    }
-
-        [UnityTest, Order(1)]
+        
+        [UnityTest]
         public IEnumerator EnemyMovement()
         {
             GameObject enemy = new GameObject();
             enemy.AddComponent<Rigidbody2D>();
-            enemy.AddComponent<EnemyController>();
-
+            enemy.AddComponent<EnemyController2>();
+         
 
             Vector3 initialPos = enemy.transform.position;
 
@@ -45,37 +26,27 @@ namespace Tests
 
         }
 
-        [UnityTest, Order(2)]
+        [UnityTest]
         public IEnumerator EnemyCollision()
         {
             GameObject enemy = new GameObject();
             enemy.AddComponent<Rigidbody2D>();
-            enemy.AddComponent<EnemyController>();
+            enemy.AddComponent<EnemyController2>();
+            enemy.AddComponent<Animator>();
 
             GameObject tile = new GameObject();
             tile.AddComponent<Rigidbody2D>();
-            tile.AddComponent<PlayerController>();
+            tile.AddComponent<PlayerController2>();
             tile.tag = "Tile";
 
-            int initialDirection = enemy.GetComponent<EnemyController>().getDirection();
+            int initialDirection = enemy.GetComponent<EnemyController2>().getDirection();
 
             enemy.transform.position = tile.transform.position;
             yield return new WaitForSeconds(0.1f);
 
-            Assert.AreNotEqual(enemy.GetComponent<EnemyController>().getDirection(), initialDirection);
+            Assert.AreNotEqual(enemy.GetComponent<EnemyController2>().getDirection(), initialDirection);
 
 
-        }
-        [UnityTest, Order(3)]
-        public IEnumerator PlayerLives()
-        {
-            int playerLife = PlayerController.GetLives();
-
-            playerObject.transform.position = enemyObject.transform.position;
-
-            yield return new WaitForSeconds(0.4f);
-
-            Assert.AreEqual(playerLife, PlayerController.GetLives());
         }
 
 

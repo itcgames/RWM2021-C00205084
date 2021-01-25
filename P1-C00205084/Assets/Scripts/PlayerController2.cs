@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController2 : MonoBehaviour
 {
 
     Vector3 playerPos;
-    Vector3 velocity; 
+    Vector3 velocity;
     float friction = 0.99f;
 
     string CURRENT_STATE;
-    public Animator animator;
+
 
     public static int lives;
 
@@ -34,37 +34,19 @@ public class PlayerController : MonoBehaviour
         playerPos.x += velocity.x * friction;
 
 
-        switch (CURRENT_STATE)
-        {
-            case "idle":
-                animator.Play("idle");
-                break;
-            case "walkLeft":
-                animator.Play("walkLeft");
-                break;
-            case "walkRight":
-                animator.Play("walkRight");
-                break;
-            case "walkUp":
-                animator.Play("walkUp");
-                break;
-            case "walkDown":
-                animator.Play("walkDown");
-                break;
-
-        }
+   
 
     }
 
     void InputController()
     {
-        if(Input.GetKeyDown("w"))
+        if (Input.GetKeyDown("w"))
         {
             MoveUp();
             CURRENT_STATE = "walkUp";
         }
 
-        if(Input.GetKeyUp("w"))
+        if (Input.GetKeyUp("w"))
         {
             StopMovement();
         }
@@ -139,7 +121,7 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         // Stop moving if tile encountered
-        if(collision.gameObject.tag == "Tile")
+        if (collision.gameObject.tag == "Tile")
         {
             velocity = new Vector2(0.0f, 0.0f);
         }
