@@ -8,9 +8,10 @@ public class PlayerController : MonoBehaviour
 
     Vector3 playerPos;
     Vector3 velocity; 
-    float friction = 0.99f; 
+    float friction = 0.99f;
 
-
+    string CURRENT_STATE;
+    public Animator animator;
 
 
     // Start is called before the first frame update
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour
     {
         playerPos = new Vector3(0.0f, -3.85f, 0.0f);
         Vector3 velocity = new Vector3(0.0f, 0.0f, 0.0f);
-        
+        CURRENT_STATE = "idle";
     }
 
     // Update is called once per frame
@@ -29,6 +30,27 @@ public class PlayerController : MonoBehaviour
         playerPos.y += velocity.y * friction;
         playerPos.x += velocity.x * friction;
 
+
+        switch (CURRENT_STATE)
+        {
+            case "idle":
+                animator.Play("idle");
+                break;
+            case "walkLeft":
+                animator.Play("walkLeft");
+                break;
+            case "walkRight":
+                animator.Play("walkRight");
+                break;
+            case "walkUp":
+                animator.Play("walkUp");
+                break;
+            case "walkDown":
+                animator.Play("walkDown");
+                break;
+
+        }
+
     }
 
     void InputController()
@@ -36,6 +58,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown("w"))
         {
             MoveUp();
+            CURRENT_STATE = "walkUp";
         }
 
         if(Input.GetKeyUp("w"))
@@ -46,6 +69,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey("a"))
         {
             MoveLeft();
+            CURRENT_STATE = "walkLeft";
         }
 
         if (Input.GetKeyUp("a"))
@@ -56,6 +80,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey("s"))
         {
             MoveDown();
+            CURRENT_STATE = "walkDown";
         }
 
         if (Input.GetKeyUp("s"))
@@ -67,6 +92,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey("d"))
         {
             MoveRight();
+            CURRENT_STATE = "walkRight";
         }
 
         if (Input.GetKeyUp("d"))
