@@ -95,12 +95,7 @@ public class EnemyController : MonoBehaviour
             Debug.Log("Collision");
         }
 
-        // 
-        if (collision.gameObject.tag == "Life")
-        {
-            lives = lives + 1;
-            Debug.Log("Collision");
-        }
+     
     }
 
     public int getDirection()
