@@ -65,27 +65,42 @@ namespace Tests
         }
 
 
+    /*    [UnityTest]
+        public IEnumerator PlayerDead()
+        {
+            GameObject player = new GameObject();
+            player.AddComponent<PlayerController2>();
+            PlayerController2 script  = player.GetComponent<PlayerController2>();
 
-      //  [UnityTest]
-       // public IEnumerator EnemyTwoMovement()
+            int lives = 0;
+            script.SetLives(lives);
+            yield return new WaitForSeconds(2.0f);
+            Assert.AreEqual(script.GetStatus(), "dead");
+        }
+
+        */
+
+
+        //  [UnityTest]
+        // public IEnumerator EnemyTwoMovement()
         //{
-          //  GameObject enemyTwo = new GameObject();
-            //enemyTwo.AddComponent<Rigidbody2D>();
-            //enemyTwo.AddComponent<EnemyTwoController>();
-            //EnemyTwoController script =  enemyTwo.GetComponent<EnemyTwoController>();
+        //  GameObject enemyTwo = new GameObject();
+        //enemyTwo.AddComponent<Rigidbody2D>();
+        //enemyTwo.AddComponent<EnemyTwoController>();
+        //EnemyTwoController script =  enemyTwo.GetComponent<EnemyTwoController>();
 
-            //GameObject player = new GameObject();
-            //player.AddComponent<Rigidbody2D>();
-            //player.AddComponent<PlayerController2>();
-            //player.tag = "Player";
+        //GameObject player = new GameObject();
+        //player.AddComponent<Rigidbody2D>();
+        //player.AddComponent<PlayerController2>();
+        //player.tag = "Player";
 
-          
-        
+
+
         //    script.setState("follow");
 
-          //  yield return new WaitForSeconds(5.0f);
-            //Assert.AreEqual(player.transform.position, enemyTwo.transform.position);
+        //  yield return new WaitForSeconds(5.0f);
+        //Assert.AreEqual(player.transform.position, enemyTwo.transform.position);
         //}
-        
+
     }
 }

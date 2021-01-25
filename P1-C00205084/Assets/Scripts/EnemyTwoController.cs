@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyTwoController : MonoBehaviour
 {
-  
-
     // Enemy has two movement states: follow and wander 
     string CURRENT_STATE;
 

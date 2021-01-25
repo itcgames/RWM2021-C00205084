@@ -13,7 +13,9 @@ public class PlayerController2 : MonoBehaviour
     string CURRENT_STATE;
 
 
-    public static int lives;
+    public int lives;
+
+    public bool dead;
 
 
     // Start is called before the first frame update
@@ -23,6 +25,7 @@ public class PlayerController2 : MonoBehaviour
         Vector3 velocity = new Vector3(0.0f, 0.0f, 0.0f);
         CURRENT_STATE = "idle";
         lives = 3;
+        dead = false;
     }
 
     // Update is called once per frame
@@ -34,7 +37,10 @@ public class PlayerController2 : MonoBehaviour
         playerPos.x += velocity.x * friction;
 
 
-   
+        if (lives == 0)
+        {
+            dead = true;
+        }
 
     }
 
@@ -136,4 +142,29 @@ public class PlayerController2 : MonoBehaviour
     {
         return lives;
     }
+
+    public void SetLives(int t_lives)
+    {
+        lives = t_lives;
+
+        if(lives == 0)
+        {
+            dead = true;
+        }    
+    }
+
+    public string GetStatus()
+    {
+        if(lives == 0)
+        {
+            return "dead";
+        }
+
+
+        else
+        {
+            return "alive";
+        }
+    }
+
 }
