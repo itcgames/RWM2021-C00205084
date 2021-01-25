@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyUp("w"))
         {
             StopMovement();
+            CURRENT_STATE = "idle";
         }
 
         if (Input.GetKey("a"))
@@ -78,6 +79,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp("a"))
         {
             StopMovement();
+            CURRENT_STATE = "idle";
         }
 
         if (Input.GetKey("s"))
@@ -89,6 +91,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp("s"))
         {
             StopMovement();
+            CURRENT_STATE = "idle";
         }
 
 
@@ -101,6 +104,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp("d"))
         {
             StopMovement();
+            CURRENT_STATE = "idle";
         }
 
     }
