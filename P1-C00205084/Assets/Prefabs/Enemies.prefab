@@ -82,6 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e6c51c77b533c47b3c518ad1ecfe63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyDirection: 0
 --- !u!50 &5139532731977397917
 Rigidbody2D:
   serializedVersion: 4
@@ -131,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e6c51c77b533c47b3c518ad1ecfe63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyDirection: 0
 --- !u!1001 &5139532732764410015
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142,6 +144,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399538997070733913, guid: c3caf32384c838a4784a212f127b8dac,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4297391650352156021, guid: c3caf32384c838a4784a212f127b8dac,
         type: 3}
@@ -223,6 +230,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399538997070733913, guid: c3caf32384c838a4784a212f127b8dac,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4297391650352156021, guid: c3caf32384c838a4784a212f127b8dac,
         type: 3}
