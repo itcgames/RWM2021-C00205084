@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     string CURRENT_STATE;
     public Animator animator;
 
+    public int lives;
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,7 @@ public class PlayerController : MonoBehaviour
         playerPos = new Vector3(0.0f, -3.85f, 0.0f);
         Vector3 velocity = new Vector3(0.0f, 0.0f, 0.0f);
         CURRENT_STATE = "idle";
+        lives = 3;
     }
 
     // Update is called once per frame
@@ -141,5 +144,14 @@ public class PlayerController : MonoBehaviour
             velocity = new Vector2(0.0f, 0.0f);
         }
 
+        if (collision.gameObject.tag == "Enemy")
+        {
+            lives = lives - 1;
+        }
+    }
+
+    public static int GetLives()
+    {
+        return lives;
     }
 }

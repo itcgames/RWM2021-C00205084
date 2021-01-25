@@ -121,6 +121,31 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &65338850 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6247848887658656590, guid: b9c0ee3437015524092e22dce2c56749,
+    type: 3}
+  m_PrefabInstance: {fileID: 6247848887803662583}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &65338851
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65338850}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cb4130896605cef4696307eb4a22f9af, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &164270916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -133,6 +158,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2830292239212452858, guid: ff3f05c905f570d46a67ca4f60d2df4b,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 164270918}
     - target: {fileID: 3610449378568821795, guid: ff3f05c905f570d46a67ca4f60d2df4b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -305,6 +335,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6247848887658656586, guid: b9c0ee3437015524092e22dce2c56749,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 65338851}
     - target: {fileID: 6247848887658656587, guid: b9c0ee3437015524092e22dce2c56749,
         type: 3}
       propertyPath: m_LocalPosition.x

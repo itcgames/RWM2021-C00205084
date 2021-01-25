@@ -8,7 +8,27 @@ namespace Tests
 {
     public class TestScript
     {
-        [UnityTest]
+
+       GameObject playerObject;
+       GameObject enemyObject;
+
+        string player = "Prefabs/Player";
+        string enemy = "Prefabs/Enemy1";
+
+
+    [SetUp]
+    public void Setup()
+    {
+        GameObject controllerPrefab = Resources.Load<GameObject>(player);
+
+        playerObject = GameObject.Instantiate(controllerPrefab, new Vector2(50.0f, 50.0f), Quaternion.identity);
+
+        GameObject controllerEnemyPrefab = Resources.Load<GameObject>(enemy);
+
+        enemyObject = GameObject.Instantiate(controllerEnemyPrefab, new Vector2(0.0f, 0.0f), Quaternion.identity);
+    }
+
+        [UnityTest, Order(1)]
         public IEnumerator EnemyMovement()
         {
             GameObject enemy = new GameObject();
@@ -25,7 +45,7 @@ namespace Tests
 
         }
 
-        [UnityTest]
+        [UnityTest, Order(2)]
         public IEnumerator EnemyCollision()
         {
             GameObject enemy = new GameObject();
@@ -45,6 +65,17 @@ namespace Tests
             Assert.AreNotEqual(enemy.GetComponent<EnemyController>().getDirection(), initialDirection);
 
 
+        }
+        [UnityTest, Order(3)]
+        public IEnumerator PlayerLives()
+        {
+            int playerLife = PlayerController.GetLives();
+
+            playerObject.transform.position = enemyObject.transform.position;
+
+            yield return new WaitForSeconds(0.4f);
+
+            Assert.AreEqual(playerLife, PlayerController.GetLives());
         }
 
 
