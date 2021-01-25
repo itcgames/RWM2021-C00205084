@@ -173,15 +173,9 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("CollisionEnemy");
             velocity = new Vector2(0.0f, 0.0f);
-
-            playerLives = playerLives - 1;
-        }
-
-        // Life function - this is much different to the one from group project but this one is generic and could work with other projects
-        if (other.gameObject.tag == "Life")
-        {
-            playerLives = playerLives + 1;
-            Debug.Log("Collision");
+       // Following dependant on component made in group project
+       //     GameController gameControllerScript = FindObjectOfType<GameController>();
+       //    gameControllerScript.DeductLife();
         }
     }
 
