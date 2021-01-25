@@ -32,7 +32,6 @@ namespace Tests
             GameObject enemy = new GameObject();
             enemy.AddComponent<Rigidbody2D>();
             enemy.AddComponent<EnemyController2>();
-            enemy.AddComponent<Animator>();
 
             GameObject tile = new GameObject();
             tile.AddComponent<Rigidbody2D>();
@@ -47,6 +46,26 @@ namespace Tests
             Assert.AreNotEqual(enemy.GetComponent<EnemyController2>().getDirection(), initialDirection);
 
 
+        }
+
+        [UnityTest]
+        public IEnumerator PlayerLives()
+        {
+            GameObject enemy = new GameObject();
+            enemy.AddComponent<Rigidbody2D>();
+            enemy.AddComponent<EnemyController2>();
+
+            GameObject player = new GameObject();
+            player.AddComponent<Rigidbody2D>();
+            player.AddComponent<PlayerController2>();
+            player.tag = "Player";
+
+            int initialLives = player.GetComponent<PlayerController2>().GetLives();
+
+            enemy.transform.position = player.transform.position;
+            yield return new WaitForSeconds(0.1f);
+
+            Assert.AreNotEqual(player.GetComponent<PlayerController2>().GetLives(), initialLives);
         }
 
 
